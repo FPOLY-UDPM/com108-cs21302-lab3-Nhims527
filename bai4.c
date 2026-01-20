@@ -17,13 +17,15 @@ int main() {
         printf("\n===== MENU CHUONG TRINH =====\n");
         printf("1. Tinh hoc luc sinh vien\n");
         printf("2. Giai phuong trinh (bac 1 & bac 2)\n");
-        printf("3. Tinh tien dien\n");
+        printf("3. Tinh tien dien (bac thang)\n");
         printf("0. Thoat\n");
         printf("Lua chon cua ban: ");
         scanf("%d", &chon);
 
         switch (chon) {
-            case 1: {   // BÀI 1: TÍNH HỌC LỰC
+
+            // ===== BAI 1: TINH HOC LUC =====
+            case 1: {
                 float diem;
                 printf("Nhap diem (0-10): ");
                 scanf("%f", &diem);
@@ -45,12 +47,13 @@ int main() {
                 break;
             }
 
-            case 2: {   // BÀI 2: GIẢI PHƯƠNG TRÌNH
+            // ===== BAI 2: GIAI PHUONG TRINH =====
+            case 2: {
                 float a, b, c, delta;
                 printf("Nhap a, b, c: ");
                 scanf("%f %f %f", &a, &b, &c);
 
-                if (a == 0) {   // Bậc 1
+                if (a == 0) { // Bac 1
                     if (b == 0) {
                         if (c == 0)
                             printf("Phuong trinh co vo so nghiem\n");
@@ -59,7 +62,7 @@ int main() {
                     } else {
                         printf("Nghiem x = %.2f\n", -c / b);
                     }
-                } else {        // Bậc 2
+                } else { // Bac 2
                     delta = b*b - 4*a*c;
                     if (delta < 0)
                         printf("Phuong trinh vo nghiem\n");
@@ -73,16 +76,36 @@ int main() {
                 break;
             }
 
-            case 3: {   // BÀI 3: TÍNH TIỀN ĐIỆN
-                int soDien;
-                long tien;
-                printf("Nhap so dien tieu thu (kWh): ");
-                scanf("%d", &soDien);
+            // ===== BAI 3: TINH TIEN DIEN (BAC THANG) =====
+            case 3: {
+                int kWh;
+                long tien = 0;
 
-                if (soDien < 0)
+                printf("Nhap so dien tieu thu (kWh): ");
+                scanf("%d", &kWh);
+
+                if (kWh < 0) {
                     printf("So dien khong hop le!\n");
-                else {
-                    tien = soDien * 3000;
+                } else {
+                    if (kWh <= 50)
+                        tien = kWh * 1678;
+                    else if (kWh <= 100)
+                        tien = 50 * 1678 + (kWh - 50) * 1734;
+                    else if (kWh <= 200)
+                        tien = 50 * 1678 + 50 * 1734
+                             + (kWh - 100) * 2014;
+                    else if (kWh <= 300)
+                        tien = 50 * 1678 + 50 * 1734
+                             + 100 * 2014 + (kWh - 200) * 2536;
+                    else if (kWh <= 400)
+                        tien = 50 * 1678 + 50 * 1734
+                             + 100 * 2014 + 100 * 2536
+                             + (kWh - 300) * 2834;
+                    else
+                        tien = 50 * 1678 + 50 * 1734
+                             + 100 * 2014 + 100 * 2536
+                             + 100 * 2834 + (kWh - 400) * 2927;
+
                     printf("Tien dien phai dong: %ld VND\n", tien);
                 }
                 break;
@@ -100,3 +123,4 @@ int main() {
 
     return 0;
 }
+
