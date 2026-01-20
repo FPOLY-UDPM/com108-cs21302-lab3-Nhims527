@@ -1,4 +1,4 @@
-// VÍ DỤ
+// 
 
 #include <stdio.h>
 
